@@ -57,96 +57,87 @@ function WorkingPage(props) {
   }, [numarInmatriculare]);
 
   return (
-    <>
-      <Navbar />
-      <div className={style.wrapper}>
-        <div className={style.title}>Parcare Camin 2</div>
-        <div className={style.map}>
-          {/*<img src="/parcare1.png" alt="parcare1" className={style.mapPng}/>*/}
-          <div className={style.colWrapper}>
-            <div className={style.col1}>
-              {parcareCamin1.map((spot, index) => {
-                return (
-                  <div
-                    className={style.spot}
-                    style={{
-                      backgroundColor: getSpotClass(parcareCamin1, index),
-                    }}
-                    key={index}
-                    onClick={() => handlecurrentSpotSelection1(index)}
-                  >
-                    <div className={style.slotInterior}>
-                      {parcareCamin1[index].number}
-                    </div>
+    <div className={style.wrapper}>
+      <div className={style.title}>Parcare Camin 2</div>
+      <div className={style.map}>
+        {/*<img src="/parcare1.png" alt="parcare1" className={style.mapPng}/>*/}
+        <div className={style.colWrapper}>
+          <div className={style.col1}>
+            {parcareCamin1.map((spot, index) => {
+              return (
+                <div
+                  className={style.spot}
+                  style={{
+                    backgroundColor: getSpotClass(parcareCamin1, index),
+                  }}
+                  key={index}
+                  onClick={() => handlecurrentSpotSelection1(index)}
+                >
+                  <div className={style.slotInterior}>
+                    {parcareCamin1[index].number}
                   </div>
-                );
-              })}
-            </div>
-            <div className={style.col2}>
-              {parcareCamin2.map((spot, index) => {
-                return (
-                  <div
-                    className={style.spot}
-                    style={{
-                      backgroundColor: getSpotClass(parcareCamin2, index),
-                    }}
-                    key={index}
-                    onClick={() => handlecurrentSpotSelection2(index)}
-                  >
-                    <div className={style.slotInterior}>
-                      {parcareCamin2[index].number}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div className={style.info}>
-          <div className={style.step}>
-            <img src="/number-1.png" alt="number1" className={style.number} />
-            <p>SelecteazĂ un loc dispoibil :</p>
-            {error && (
-              <div className={style.modalError}>
-                <div className={style.modalView}>
-                  <p className={style.errorText}>Locul este Ocupat !</p>
-                  <button
-                    onClick={() => setError(false)}
-                    className={style.errorBtn}
-                  >
-                    Ok
-                  </button>
                 </div>
-              </div>
-            )}
-            {currentSpot && <p>Ati ales locul : {currentSpot}</p>}
+              );
+            })}
           </div>
-          {currentSpot && (
-            <>
-              <div className={style.step}>
-                <img
-                  src="/number-2.png"
-                  alt="number2"
-                  className={style.number}
-                />
-                <p>Introdu numĂrul de Înmatriculare</p>
-                <input
-                  type="text"
-                  className={style.input}
-                  placeholder={"SB 93 MON"}
-                  onChange={(event) =>
-                    setNumarInmatriculare(event.target.value)
-                  }
-                />
-              </div>
-              <div className={style.buttonContainer}>
-                <button className={style.confirmBtn}>ConfirmĂ</button>
-              </div>
-            </>
-          )}
+          <div className={style.col2}>
+            {parcareCamin2.map((spot, index) => {
+              return (
+                <div
+                  className={style.spot}
+                  style={{
+                    backgroundColor: getSpotClass(parcareCamin2, index),
+                  }}
+                  key={index}
+                  onClick={() => handlecurrentSpotSelection2(index)}
+                >
+                  <div className={style.slotInterior}>
+                    {parcareCamin2[index].number}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </>
+      <div className={style.info}>
+        <div className={style.step}>
+          <img src="/number-1.png" alt="number1" className={style.number} />
+          <p>SelecteazĂ un loc dispoibil :</p>
+          {error && (
+            <div className={style.modalError}>
+              <div className={style.modalView}>
+                <p className={style.errorText}>Locul este Ocupat !</p>
+                <button
+                  onClick={() => setError(false)}
+                  className={style.errorBtn}
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          )}
+          {currentSpot && <p>Ati ales locul : {currentSpot}</p>}
+        </div>
+        {currentSpot && (
+          <>
+            <div className={style.step}>
+              <img src="/number-2.png" alt="number2" className={style.number} />
+              <p>Introdu numĂrul de Înmatriculare</p>
+              <input
+                type="text"
+                className={style.input}
+                placeholder={"SB 93 MON"}
+                onChange={(event) => setNumarInmatriculare(event.target.value)}
+              />
+            </div>
+            <div className={style.buttonContainer}>
+              <button className={style.confirmBtn}>ConfirmĂ</button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 

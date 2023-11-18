@@ -1,6 +1,5 @@
 import './App.css'
 import VideoComponent from "./pages/VideoPage/VideoClassic.jsx";
-import './firebaseConfig.js'
 import WorkingPage from "./pages/WorkingPage.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import {
