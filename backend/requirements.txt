@@ -1,3 +1,6 @@
 # Production requirements for Google App Engine
 -r requirements-common.txt
 requests~=2.31.0
+
+opencv-python~=4.8.1.78
+torch~=2.1.1

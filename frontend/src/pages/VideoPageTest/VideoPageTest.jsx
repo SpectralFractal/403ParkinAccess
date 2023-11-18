@@ -9,11 +9,13 @@ function VideoPageTest(props) {
 
     const [emitCount, setEmitCount] = useState(0);
     const [sendCount, setSendCount] = useState(0);
+    const [results,setResults] = useState([])
     const carabetApi = "ws://16.171.64.238:5000/ws-fast"
     const localCV ="ws://127.0.0.1:8000/ws-fast"
     const localYOLO ="ws://127.0.0.1:8000/ws-yolo"
     const googleApi ="wss://fast-api-405217.lm.r.appspot.com/ws-fast"
-
+    const parkingAPI = "ws://127.0.0.1:8000/ws-parking-update"
+    const flaviusAPI = "ws://127.0.0.1:8000/video"
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true })
@@ -30,22 +32,18 @@ function VideoPageTest(props) {
     }, []);
 
     const handleConnect = () => {
-        wsRef.current = new WebSocket(localYOLO);
+        wsRef.current = new WebSocket(flaviusAPI);
 
         wsRef.current.onopen = () => {
             console.log('WebSocket connection opened');
-
-            const intervalId = setInterval(() => {
-                const frame = captureVideoFrame(videoRef.current, 'jpeg', 1);
-                setSendCount(prevState => prevState + 1);
-                wsRef.current.send(frame.blob);
-            }, 100);
-
-            return () => clearInterval(intervalId);
+            
+            Y
         };
 
         wsRef.current.onmessage = (message) => {
-            setVideoSrc(message.data);
+            const temp = JSON.parse(message.data)
+            
+            setResults(temp)
             setEmitCount(prevState => prevState + 1);
         };
 
